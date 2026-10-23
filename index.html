@@ -40,6 +40,11 @@ const firebaseConfig = {
 };
 const app=initializeApp(firebaseConfig), auth=getAuth(app), db=getFirestore(app);
 let confirmation=null,currentUser=null,game='MLBB',selected=0,payment='KBZPay',recaptcha=null;
+  const ADMIN_UID = 'dymRDTQFt3PFJHpKhCu6WMFrYOG3';
+
+function isAdminUser() {
+return !!currentUser && currentUser.uid === ADMIN_UID;
+}
 const packages={MLBB:[{name:'86 Diamonds',price:2500,icon:'💎'},{name:'172 Diamonds',price:4800,icon:'💎'},{name:'257 Diamonds',price:7200,icon:'💎'},{name:'344 Diamonds',price:9500,icon:'💎'},{name:'Weekly Pass',price:6500,icon:'🎟️'},{name:'Twilight Pass',price:30000,icon:'👑'}],PUBG:[{name:'60 UC',price:3000,icon:'🪙'},{name:'325 UC',price:14500,icon:'🪙'},{name:'660 UC',price:28500,icon:'🪙'},{name:'1800 UC',price:72000,icon:'🪙'},{name:'3850 UC',price:142000,icon:'🪙'},{name:'8100 UC',price:285000,icon:'🪙'}]};
 const money=n=>Number(n).toLocaleString('en-US')+' MMK';
 window.toast=t=>{const el=document.getElementById('toast');el.textContent=t;el.style.display='block';setTimeout(()=>el.style.display='none',3000)};
